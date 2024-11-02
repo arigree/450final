@@ -5,18 +5,23 @@ export default function Nav() {
   return (
     <nav>
       <ul className={navStyles.mainNav}>
-        <li>
-          <Link href="/">Home</Link>
+        <div className={navStyles.logo}>
+          <li>
+          <Link href="/">Logo</Link>
+        </li>
+        </div>
+        <div className={navStyles.links}>
+          <li>
+          <Link href="/books">Books</Link>
         </li>
         <li>
-          <Link href="/search">Search</Link>
+          <Link href="/account">Account</Link>
         </li>
         <li>
-          <Link href="/groups">Groups</Link>
+          <Link href="/lbms">LBMS</Link>
         </li>
-        <li>
-          <Link href="/favorites">Favorites</Link>
-        </li>
+        </div>
+        
       </ul>
     </nav>
   );
