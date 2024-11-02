@@ -1,5 +1,5 @@
-
 import "./globals.css";
+import Nav from "@/components/Nav";
 
 export const metadata = {
   title: "Create Next App",
@@ -9,7 +9,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body></body>
+      <body>
+        
+          <Nav />
+          {children}
+        
+      </body>
     </html>
   );
 }
