@@ -3,7 +3,7 @@ import useBookApi from "../../hooks/useBookApi";
 import accountStyles from "./books.module.css";
 
 export default function Books() {
-  const { books, loading, error } = useBookApi();
+  const { books, loading, error } = useBookApi(true);
 
   return (
     <main className={accountStyles.main}>

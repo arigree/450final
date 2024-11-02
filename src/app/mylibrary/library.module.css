@@ -11,7 +11,7 @@
     align-items: center;
     flex-direction: column;
     width: 70%;
-    height: 80%;
+    
     background-color: #F2F2F2;
 }
 .bookCard {
@@ -41,4 +41,33 @@
   .clearButton:hover {
     background-color: #d32f2f;
   }
-  
+  .checkedOut{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .recommendations{
+    margin: .5vw;
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    
+  }
+  .covers{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .button{
+    margin: .2vw;
+    margin-left: 10px;
+    padding: 5px 10px;
+    background-color: #735953;
+    color: #F2F2F2;
+    border: none; 
+    border-radius: 4px;
+    cursor: pointer; 
+}

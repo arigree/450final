@@ -5,14 +5,13 @@ import useBookApi from "../../hooks/useBookApi";
 
 export default function Library() {
   const [search, setSearch] = useState("");
-  const { books, loading, error, fetchBooks } = useBookApi(); 
+  const { books, loading, error, fetchBooks } = useBookApi();
 
   const bookSearch = (query) => {
     setSearch(query);
     if (query) {
       fetchBooks(query);
     } else {
-     
       fetchBooks("the");
     }
   };
@@ -41,8 +40,7 @@ export default function Library() {
         <div className={libraryStyles.searchResults}>
             {loading && <p>Loading...</p>}
         {error && <p>Error: {error}</p>}
-        <div className={libraryStyles.checkedOut}></div>
-        <div className={libraryStyles.recommendations}>
+        <div className={libraryStyles.results}>
           {books.length > 0 ? (
             books.map((book) => (
               <div key={book.key} className={libraryStyles.bookCard}>
@@ -64,8 +62,19 @@ export default function Library() {
           )}
         </div>
         </div>
-        <div className={libraryStyles.checkedOut}></div>
-        <div className={libraryStyles.recommendations}></div>
+        <div className={libraryStyles.checkedOut}>
+            <h2>Your Checked Out Books</h2>
+            <img src="https://covers.openlibrary.org/b/id/6573517-M.jpg"></img>
+        </div>
+        <div className={libraryStyles.recommendations}>
+            <h2>Recommendations</h2>
+            <div className={libraryStyles.covers}>
+                <img src="https://covers.openlibrary.org/b/id/8684447-M.jpg"></img>
+            <img src="https://covers.openlibrary.org/b/id/12986869-M.jpg"></img>
+            <img src="https://covers.openlibrary.org/b/id/8352502-M.jpg"></img>
+            </div>
+            
+        </div>
       </div>
     </main>
   );
