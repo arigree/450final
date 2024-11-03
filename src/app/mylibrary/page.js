@@ -49,11 +49,13 @@ export default function Library() {
                     src={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`}
                     alt={book.title}
                     className={libraryStyles.bookCover}
-                  />
+                  /> 
+                  // this is just angry about the alt tag doesnt affect function. fix before final
                 )}
                 <h2>{book.title}</h2>
                 <p>{book.author_name?.join(", ")}</p>
                 <p>ISBN: {book.isbn ? book.isbn[0]?.substring(0, 10) + "..." : "N/A"}</p>
+                {/* limits to 10 characters, api has about 1.2 million */}
                 
               </div>
             ))

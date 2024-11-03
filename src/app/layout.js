@@ -13,7 +13,7 @@ export default function RootLayout({ children }) {
         
           <Nav />
           {children}
-        
+        {/* add stuff to later */}
       </body>
     </html>
   );

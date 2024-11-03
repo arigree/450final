@@ -1,6 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
 
+// api i am using: https://openlibrary.org/dev/docs/api/search
+
 export default function useBookApi(isRandom = false) {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -22,6 +24,7 @@ export default function useBookApi(isRandom = false) {
 
   useEffect(() => {
     if (isRandom) {
+      // for books page, limited to 10 for load times
       const fetchRandomBooks = async () => {
         setLoading(true);
         try {
