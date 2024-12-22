@@ -7,7 +7,9 @@ export default function Nav() {
       <ul className={navStyles.mainNav}>
         <div className={navStyles.logo}>
           <li>
-          <Link href="/">Logo</Link>
+          <Link href="/">
+          <img src="/logo.png"></img>
+          </Link>
         </li>
         </div>
         <div className={navStyles.links}>

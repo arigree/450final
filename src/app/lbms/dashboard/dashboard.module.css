@@ -1,0 +1,49 @@
+.main{
+    padding: 100px;
+}
+.form{
+    padding: 40px;
+    width: 50%;
+    background-color: #F2F2F2;
+}
+.search{
+    padding: 40px;
+    width: 50%;
+    background-color: #F2F2F2;
+}
+.input{
+
+}
+.preview{
+    padding: 40px;
+    width: 50%;
+    background-color: #F2F2F2;
+}
+.bookGrid{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 800px;
+}
+.bookCard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+.bookCover{
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.button{
+    margin: 1vw;
+    width: 6vw;
+    height: 1vw;
+}

@@ -1,8 +1,21 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import accountStyles from "./lbms.module.css";
 
 export default function LBMS() {
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+  const router = useRouter();
+
+  const handleLogin = () => {
+    if (loginEmail === "librarian" && loginPassword === "admin123") {
+      router.push("/lbms/dashboard");
+    } else {
+      alert("Invalid login credentials");
+    }
+  };
+
   return (
     <main className={accountStyles.body}>
       <div className={accountStyles.content}>
@@ -13,15 +26,29 @@ export default function LBMS() {
               type="email"
               className={accountStyles.data}
               placeholder="Email Address:"
+              value={loginEmail}
+              onChange={(e) => setLoginEmail(e.target.value)}
             />
             <input
               type="password"
               className={accountStyles.data}
               placeholder="Password:"
+              value={loginPassword}
+              onChange={(e) => setLoginPassword(e.target.value)}
             />
-            <div class="buttonHolder">
-              <button className={accountStyles.button}>LOGIN</button>
-              <button className={accountStyles.button}>LOGOUT</button>
+            <div className="buttonHolder">
+              <button className={accountStyles.button} onClick={handleLogin}>
+                LOGIN
+              </button>
+              <button
+                className={accountStyles.button}
+                onClick={() => {
+                  setLoginEmail("");
+                  setLoginPassword("");
+                }}
+              >
+                LOGOUT
+              </button>
             </div>
           </div>
         </div>

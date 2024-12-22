@@ -50,7 +50,7 @@ export default function Library() {
                     alt={book.title}
                     className={libraryStyles.bookCover}
                   /> 
-                  // this is just angry about the alt tag doesnt affect function. fix before final
+                
                 )}
                 <h2>{book.title}</h2>
                 <p>{book.author_name?.join(", ")}</p>
