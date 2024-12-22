@@ -12,7 +12,7 @@ export default function Books() {
       {books.length > 0 && (
         <div className={accountStyles.bookGrid}>
           {books.map((book) => (
-            <div key={book.key} className={accountStyles.bookCard}>
+            <div key={book.key} className={accountStyles.bookCard}> 
               <img
                 src={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`}
                 alt={`Cover of ${book.title}`}

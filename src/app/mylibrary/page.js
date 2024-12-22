@@ -14,7 +14,7 @@ export default function Library() {
     } else {
       fetchBooks("the");
     }
-  };
+  }; 
 
   const clearSearch = () => {
     setSearch("");

@@ -7,15 +7,15 @@ export default function useBookApi(isRandom = false) {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+ 
   const fetchBooks = async (query) => {
     setLoading(true);
     try {
       const response = await fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(query)}`);
       if (!response.ok) throw new Error("Failed to fetch data");
       const data = await response.json();
-      setBooks(data.docs || []);
-    } catch (error) {
+      setBooks(data.docs || []); 
+    } catch (error) { 
       setError(error.message);
     } finally {
       setLoading(false);
@@ -27,7 +27,7 @@ export default function useBookApi(isRandom = false) {
       // for books page, limited to 10 for load times
       const fetchRandomBooks = async () => {
         setLoading(true);
-        try {
+        try { 
           const response = await fetch("https://openlibrary.org/search.json?q=the");
           if (!response.ok) throw new Error("Failed to fetch data");
           const data = await response.json();
