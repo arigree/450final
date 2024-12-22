@@ -8,7 +8,7 @@ export default function Nav() {
         <div className={navStyles.logo}>
           <li>
           <Link href="/">
-          <img src="../../../public/logo.png"></img>
+          <img src="/logo.png"></img>
           </Link>
         </li>
         </div>

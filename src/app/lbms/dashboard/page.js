@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 import librarianStyles from "./dashboard.module.css";
-import useBookApi from "../../../hooks/useBookApi";
 
 export default function LibrarianDashboard() {
   const [title, setTitle] = useState("");
@@ -11,10 +10,10 @@ export default function LibrarianDashboard() {
   const [books, setBooks] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
 
-  const { books: apiBooks, loading, error } = useBookApi(searchQuery);
   const loadBooksFromLocalStorage = () => {
     const savedBooks = JSON.parse(localStorage.getItem("recentBooks")) || [];
     setBooks(savedBooks);
+    setSearchResults(savedBooks);
   };
 
   useEffect(() => {
@@ -22,14 +21,11 @@ export default function LibrarianDashboard() {
   }, []);
 
   const handleSearch = () => {
-    const results = [
-      ...apiBooks,
-      ...books.filter(
-        (book) =>
-          book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          book.author.toLowerCase().includes(searchQuery.toLowerCase())
-      ),
-    ];
+    const results = books.filter(
+      (book) =>
+        book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        book.author.toLowerCase().includes(searchQuery.toLowerCase())
+    );
     setSearchResults(results);
   };
 
@@ -46,11 +42,13 @@ export default function LibrarianDashboard() {
       cover_url: coverUrl,
     };
 
-    setBooks((prevBooks) => {
-      const updatedBooks = [newBook, ...prevBooks];
-      localStorage.setItem("recentBooks", JSON.stringify(updatedBooks));
-      return updatedBooks;
-    });
+    const updatedBooks = [newBook, ...books];
+    setBooks(updatedBooks);
+    localStorage.setItem("recentBooks", JSON.stringify(updatedBooks));
+
+
+    setSearchResults(updatedBooks);
+
 
     setTitle("");
     setAuthor("");
@@ -58,15 +56,14 @@ export default function LibrarianDashboard() {
   };
 
   const handleDeleteBook = (bookId) => {
-
     const updatedBooks = books.filter((book) => book.id !== bookId);
     setBooks(updatedBooks);
+    setSearchResults(updatedBooks);
     localStorage.setItem("recentBooks", JSON.stringify(updatedBooks));
   };
 
   const handleUpdateBook = (bookId) => {
     const bookToUpdate = books.find((book) => book.id === bookId);
-
     const updatedTitle = prompt("Enter new title:", bookToUpdate.title);
     const updatedAuthor = prompt("Enter new author:", bookToUpdate.author);
 
@@ -78,13 +75,14 @@ export default function LibrarianDashboard() {
       );
 
       setBooks(updatedBooks);
+      setSearchResults(updatedBooks);
       localStorage.setItem("recentBooks", JSON.stringify(updatedBooks));
     }
   };
 
   const getCoverImageUrl = (book) => {
-    if (book.cover_i) {
-      return `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`;
+    if (book.cover_url) {
+      return book.cover_url;
     }
     return "https://via.placeholder.com/150";
   };
@@ -133,23 +131,21 @@ export default function LibrarianDashboard() {
       </div>
 
       <div className={librarianStyles.preview}>
-        <h3>Search Results</h3>
-        {loading && <p>Loading...</p>}
-        {error && <p>Error: {error}</p>}
+        <h3>Books</h3>
 
         <div className={librarianStyles.bookGrid}>
           {searchResults.length > 0 ? (
             searchResults.map((book) => (
               <div key={book.id} className={librarianStyles.bookCard}>
                 <img
-                  src={book.cover_url || getCoverImageUrl(book)}
+                  src={getCoverImageUrl(book)}
                   alt={`Cover of ${book.title}`}
                   className={librarianStyles.bookCover}
                 />
                 <h3>{book.title}</h3>
                 <p>by {book.author}</p>
 
-                {book.id ? (
+                {book.id && (
                   <>
                     <button
                       onClick={() => handleUpdateBook(book.id)}
@@ -164,8 +160,6 @@ export default function LibrarianDashboard() {
                       Delete
                     </button>
                   </>
-                ) : (
-                  <p>API book (cannot update)</p>
                 )}
               </div>
             ))
